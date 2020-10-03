@@ -7,7 +7,8 @@
   let publicKey = ''
   let otherPublicKey = ''
   let hasJoined = false
-  const typing = false
+  let typing = false
+  let typingTimeout = undefined
   var pingSwitch = document.getElementById('pingSwitch')
   var notifySetting = localStorage.getItem('ping')
 
@@ -193,9 +194,20 @@
 
   // Decrypt message and display it
   socket.on('chatMessage', (id, message) => {
+    // document.getElementById('typingIndicator').innerHTML = ''
     const decrypted = cryptico.decrypt(message, privateKey).plaintext
     addMessageHTML(id, msgID(), decrypted, false)
     notify()
+  })
+
+  // Display typing indicator
+  socket.on('typing', (id) => {
+    document.getElementById('typingIndicator').innerHTML = `<span id="typing"><p><em>${id} is typing</em></p></span>`
+  })
+
+  // Remove typing indicator
+  socket.on('stoppedTyping', () => {
+    document.getElementById('typingIndicator').innerHTML = ''
   })
 
   // Create room button
@@ -258,16 +270,33 @@
     document.getElementById('chatBox').innerHTML = ''
   })
 
-  // Listen for enter key to send message
   document.addEventListener('keydown', e => {
+  // Listen for enter key to send message
     if (e.key === 'Enter') {
       e.preventDefault()
       const chatInput = document.getElementById('chatInput')
       if (chatInput.matches(':focus') && chatInput.value) {
         const encrypted = cryptico.encrypt(chatInput.value, otherPublicKey).cipher
         socket.emit('chatMessage', roomCode, id, encrypted)
+        socket.emit('stoppedTyping', roomCode)
         addMessageHTML(id, msgID(), chatInput.value, false)
         chatInput.value = ''
+      }
+    } else {
+    // Typing indicators
+      if (typing === false) {
+        typing = true
+        socket.emit('typing', roomCode, id)
+        typingTimeout = setTimeout(() => {
+          typing = false
+          socket.emit('stoppedTyping', roomCode)
+        }, 5000)
+      } else {
+        clearTimeout(typingTimeout)
+        typingTimeout = setTimeout(() => {
+          typing = false
+          socket.emit('stoppedTyping', roomCode)
+        }, 5000)
       }
     }
   })

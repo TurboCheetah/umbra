@@ -24,4 +24,14 @@ io.on('connection', socket => {
     // Sends message
     socket.broadcast.to(roomCode).emit('chatMessage', id, message)
   })
+
+  socket.on('typing', (roomCode, id) => {
+    // Displays typing indicator
+    socket.broadcast.to(roomCode).emit('typing', id)
+  })
+
+  socket.on('stoppedTyping', (roomCode) => {
+    // Removes typing indicator
+    socket.broadcast.to(roomCode).emit('stoppedTyping')
+  })
 })
