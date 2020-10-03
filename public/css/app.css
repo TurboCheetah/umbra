@@ -1,0 +1,644 @@
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(10, 10, 10);
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+
+a {
+  color: rgb(126, 52, 208);
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(112, 48, 185);
+}
+
+img {
+  max-width: 75%;
+  max-height: 75%;
+  object-fit: contain;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.button {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(20, 20, 20);
+  color: rgb(126, 52, 208);
+}
+
+.button:hover {
+  background-color: rgb(17, 17, 17);
+  color: rgb(112, 48, 185);
+}
+
+.message {
+  color: rgb(107, 107, 107);
+  font-size: 16px;
+  margin-bottom: 15px;
+  line-height: 1rem;
+}
+
+.id {
+  color: rgb(126, 52, 208);
+  margin-right: 0.5rem;
+  float: left;
+}
+
+.status {
+  color: rgb(107, 107, 107);
+}
+
+.swal-modal {
+  font-family: "Inter", sans-serif;
+  background-color: rgb(20, 20, 20);
+}
+
+.swal-icon--info {
+  border-color: rgb(126, 52, 208);
+}
+
+.swal-icon--info:after,
+.swal-icon--info:before {
+  background-color: rgb(126, 52, 208);
+}
+
+.swal-text {
+  color: rgb(107, 107, 107);
+}
+
+.swal-content__input,
+.swal-content__textarea {
+  color: rgb(107, 107, 107);
+  background-color: rgb(14, 14, 14);
+}
+
+.swal-button {
+  background-color: rgb(126, 52, 208);
+  color: rgb(20, 20, 20);
+}
+
+.swal-button:not([disabled]):hover {
+  background-color: rgb(110, 47, 182);
+  color: rgb(17, 17, 17);
+}
+
+.swal-button--cancel {
+  background-color: rgb(14, 14, 14);
+  color: rgb(126, 52, 208);
+}
+
+.swal-button--cancel:not([disabled]):hover {
+  background-color: rgb(10, 10, 10);
+  color: rgb(112, 48, 185);
+}
+
+.copypgp {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  resize: none;
+  width: 1px;
+  height: 1px;
+  color: rgb(10, 10, 10);
+  background-color: rgb(10, 10, 10);
+  border: none;
+  outline: none;
+  cursor: default;
+}
+
+#description {
+  padding-top: 1.5rem;
+  color: rgb(107, 107, 107);
+  text-align: center;
+}
+
+#notify {
+  color: rgb(107, 107, 107);
+  text-align: center;
+}
+
+#umbra {
+  font-size: 4rem;
+  text-align: center;
+  font-weight: 900;
+  margin: 0;
+  color: rgb(126, 52, 208);
+}
+
+#desc {
+  margin: 0;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: 600;
+  color: rgb(126, 52, 208);
+}
+
+#actions {
+  width: 715px;
+  height: 30rem;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#create,
+#join {
+  width: 350px;
+  height: 130px;
+  font-size: 50px;
+}
+
+#create {
+  margin-right: 10px;
+}
+
+#roomCode {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  width: 1px;
+  height: 1px;
+  color: rgb(10, 10, 10);
+  background-color: rgb(10, 10, 10);
+  border: none;
+  outline: none;
+  cursor: default;
+}
+
+#copyRoomCode {
+  padding: 0 1rem;
+  height: 50px;
+  font-size: 20px;
+  margin: 25px;
+}
+
+#clearMessages {
+  padding: 0 1rem;
+  height: 50px;
+  font-size: 20px;
+}
+
+#chatBox {
+  margin: 0 auto;
+  width: 65vh;
+  height: 80vh;
+  background-color: rgb(10, 10, 10);
+  border: none;
+  padding: 10px;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+#chatInput {
+  overflow: hidden;
+  display: block;
+  margin-top: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 65vh;
+  height: 2vh;
+  background-color: rgb(10, 10, 10);
+  border: none;
+  outline: none;
+  color: rgb(107, 107, 107);
+  font-size: 16px;
+  padding: 10px;
+  resize: none;
+  font-family: inherit;
+}
+
+@media (max-width: 500px) {
+  body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(10, 10, 10);
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+  }
+
+  a {
+    color: rgb(126, 52, 208);
+    text-decoration: none;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .button {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(20, 20, 20);
+    color: rgb(126, 52, 208);
+  }
+
+  .button:hover {
+    background-color: rgb(17, 17, 17);
+    color: rgb(112, 48, 185);
+  }
+
+  .message {
+    color: rgb(107, 107, 107);
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .id {
+    color: rgb(126, 52, 208);
+  }
+
+  .status {
+    color: rgb(107, 107, 107);
+  }
+
+  .swal-overlay {
+    height: 100vh;
+  }
+
+  .swal-modal {
+    font-family: "Inter", sans-serif;
+    background-color: rgb(20, 20, 20);
+  }
+
+  .swal-icon--info {
+    border-color: rgb(126, 52, 208);
+  }
+
+  .swal-icon--info:after,
+  .swal-icon--info:before {
+    background-color: rgb(126, 52, 208);
+  }
+
+  .swal-text {
+    color: rgb(107, 107, 107);
+  }
+
+  .swal-content__input,
+  .swal-content__textarea {
+    color: rgb(107, 107, 107);
+    background-color: rgb(14, 14, 14);
+  }
+
+  .swal-button {
+    background-color: rgb(126, 52, 208);
+    color: rgb(20, 20, 20);
+  }
+
+  .swal-button:not([disabled]):hover {
+    background-color: rgb(110, 47, 182);
+    color: rgb(17, 17, 17);
+  }
+
+  .swal-button--cancel {
+    background-color: rgb(14, 14, 14);
+    color: rgb(126, 52, 208);
+  }
+
+  .swal-button--cancel:not([disabled]):hover {
+    background-color: rgb(10, 10, 10);
+    color: rgb(112, 48, 185);
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #description {
+    margin-top: 1.5rem;
+    margin: 1rem;
+    color: rgb(107, 107, 107);
+    text-align: center;
+  }
+
+  #notify {
+    color: rgb(107, 107, 107);
+    text-align: center;
+  }
+
+  #umbra {
+    font-size: 4rem;
+    text-align: center;
+    font-weight: 900;
+    margin: 0;
+    color: rgb(126, 52, 208);
+  }
+
+  #desc {
+    margin: 0;
+    margin-bottom: 1rem;
+    font-size: 200%;
+    text-align: center;
+    font-weight: 600;
+    color: rgb(126, 52, 208);
+  }
+
+  #actions {
+    width: 100%;
+    height: 30rem;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  #create,
+  #join {
+    margin: 1rem;
+    margin-bottom: 0.25rem;
+    width: 90%;
+    height: 75px;
+    font-size: 25px;
+  }
+
+  #chat {
+    height: 95vh;
+    padding-top: 1rem;
+    position: relative;
+  }
+
+  #roomCode {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    color: rgb(10, 10, 10);
+    background-color: rgb(10, 10, 10);
+    border: none;
+    outline: none;
+    cursor: default;
+  }
+
+  #copyRoomCode {
+    padding: 0 1rem;
+    height: 2rem;
+    font-size: 100%;
+    margin: 0;
+    margin-right: 0.7rem;
+  }
+
+  #clearMessages {
+    padding: 0 1rem;
+    height: 2rem;
+    font-size: 100%;
+    margin: 0;
+  }
+
+  @media (max-height: 600px) {
+    #copyRoomCode {
+      height: auto;
+    }
+
+    #clearMessages {
+      height: auto;
+    }
+  }
+
+  #chatBox {
+    margin: 0 auto;
+    width: 95vw;
+    height: 80vh;
+    background-color: rgb(10, 10, 10);
+    border: none;
+    padding: 0;
+    padding-top: 10px;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+  #input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #chatInput {
+    display: block;
+    margin-top: 10px;
+    margin-right: auto;
+    margin-left: 0;
+    width: 85vw;
+    height: 2vh;
+    background-color: rgb(10, 10, 10);
+    border: solid 1px;
+    border-radius: 25px;
+    outline: none;
+    color: rgb(107, 107, 107);
+    font-size: 16px;
+    padding: 10px;
+    resize: none;
+    position: absolute;
+    bottom: 0;
+  }
+
+  ::-webkit-input-placeholder {
+    line-height: 2vh;
+  }
+
+  :-moz-placeholder {
+    line-height: 2vh;
+  }
+
+  ::-moz-placeholder {
+    line-height: 2vh;
+  }
+
+  :-ms-input-placeholder {
+    line-height: 2vh;
+  }
+}
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+  input[type="checkbox"] {
+    --active: rgb(126, 52, 208);
+    --active-inner: #fff;
+    --border: rgb(107, 107, 107);
+    --border-hover: rgb(126, 52, 208);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 21px;
+    outline: none;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin: 0;
+    cursor: pointer;
+    border: 1px solid var(--bc, var(--border));
+    background: var(--b, var(--background));
+    -webkit-transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+  }
+  input[type="checkbox"]:after {
+    content: "";
+    display: block;
+    left: 0;
+    top: 0;
+    position: absolute;
+    -webkit-transition: opacity var(--d-o, 0.2s),
+      -webkit-transform var(--d-t, 0.3s) var(--d-t-e, ease);
+    transition: opacity var(--d-o, 0.2s),
+      -webkit-transform var(--d-t, 0.3s) var(--d-t-e, ease);
+    transition: transform var(--d-t, 0.3s) var(--d-t-e, ease),
+      opacity var(--d-o, 0.2s);
+    transition: transform var(--d-t, 0.3s) var(--d-t-e, ease),
+      opacity var(--d-o, 0.2s),
+      -webkit-transform var(--d-t, 0.3s) var(--d-t-e, ease);
+  }
+  input[type="checkbox"]:checked {
+    --b: var(--active);
+    --bc: var(--active);
+    --d-o: 0.3s;
+    --d-t: 0.6s;
+    --d-t-e: cubic-bezier(0.2, 0.85, 0.32, 1.2);
+  }
+  input[type="checkbox"]:disabled {
+    --b: var(--disabled);
+    cursor: not-allowed;
+    opacity: 0.9;
+  }
+  input[type="checkbox"]:disabled:checked {
+    --b: var(--disabled-inner);
+    --bc: var(--border);
+  }
+  input[type="checkbox"]:disabled + label {
+    cursor: not-allowed;
+  }
+  input[type="checkbox"]:hover:not(:checked):not(:disabled) {
+    --bc: var(--border-hover);
+  }
+  input[type="checkbox"]:focus {
+    box-shadow: 0 0 0 var(--focus);
+  }
+  input[type="checkbox"]:not(.switch) {
+    width: 21px;
+  }
+  input[type="checkbox"]:not(.switch):after {
+    opacity: var(--o, 0);
+  }
+  input[type="checkbox"]:not(.switch):checked {
+    --o: 1;
+  }
+  input[type="checkbox"] + label {
+    font-size: 14px;
+    line-height: 21px;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    margin-left: 4px;
+  }
+
+  input[type="checkbox"]:not(.switch) {
+    border-radius: 7px;
+  }
+  input[type="checkbox"]:not(.switch):after {
+    width: 5px;
+    height: 9px;
+    border: 2px solid var(--active-inner);
+    border-top: 0;
+    border-left: 0;
+    left: 7px;
+    top: 4px;
+    -webkit-transform: rotate(var(--r, 20deg));
+    transform: rotate(var(--r, 20deg));
+  }
+  input[type="checkbox"]:not(.switch):checked {
+    --r: 43deg;
+  }
+  input[type="checkbox"].switch {
+    width: 38px;
+    border-radius: 11px;
+  }
+  input[type="checkbox"].switch:after {
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    background: var(--ab, var(--border));
+    -webkit-transform: translateX(var(--x, 0));
+    transform: translateX(var(--x, 0));
+  }
+  input[type="checkbox"].switch:checked {
+    --ab: var(--active-inner);
+    --x: 17px;
+  }
+  input[type="checkbox"].switch:disabled:not(:checked):after {
+    opacity: 0.6;
+  }
+}
+
+input[type="checkbox"] {
+  box-sizing: inherit;
+}
+input[type="checkbox"]:before,
+input[type="checkbox"]:after {
+  box-sizing: inherit;
+}
+
+
+span.emoji {
+	display: -moz-inline-box;
+	-moz-box-orient: vertical;
+	display: inline-block;
+	vertical-align: baseline;
+	*vertical-align: auto;
+	*zoom: 1;
+	*display: inline;
+	width: 1em;
+	height: 1em;
+	background-size: 1em;
+	background-repeat: no-repeat;
+	text-indent: -9999px;
+	background-position: 50%, 50%;
+	background-size: contain;
+}
+
+span.emoji-sizer {
+	line-height: 0.81em;
+	font-size: 1em;
+ 	margin: -2px 0;
+}
+
+span.emoji-outer {
+	display: -moz-inline-box;
+	display: inline-block;
+	*display: inline;
+	height: 1em;
+	width: 1em;
+}
+
+span.emoji-inner {
+	display: -moz-inline-box;
+	display: inline-block;
+	text-indent: -9999px;
+	width: 100%;
+	height: 100%;
+	vertical-align: baseline;
+	*vertical-align: auto;
+	*zoom: 1;
+}
+
+img.emoji {
+	width: 1em;
+	height: 1em;
+}

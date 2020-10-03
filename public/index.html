@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Umbra</title>
+    <meta name="title" content="Umbra">
+    <meta name="description" content="Securely chat online with Umbra">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://umbra.turbo.ooo/">
+    <meta property="og:title" content="Umbra">
+    <meta property="og:description" content="Securely chat online with Umbra">
+    <meta property="og:image" content="https://umbra.turbo.ooo/img/logo.png">
+
+    <title>Umbra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="/img/icons/icon-96x96.png">
+    <meta name="apple-mobile-web-app-status-bar" content="#7E34D0">
+</head>
+
+<body>
+    <audio style="display: none" id="ping" preload="auto" src="audio/ping.mp3">
+        <source src="audio/ping.mp3" type="audio/ogg">
+    </audio>
+    <div id="actions">
+        <h1 id="umbra">Umbra</h1>
+        <h2 id="desc">E2E encrypted chat</h2>
+        <button id="create" class="button">Create Chat</button>
+        <button id="join" class="button">Join Chat</button>
+        <p id="notify">
+            <input id="pingSwitch" type="checkbox">
+            <label for="pingSwitch">Sound notifications</label>
+        </p>
+        <p id="description">When you join a room, you are given a public key and a private key. When your partner joins
+            your room your public keys are exchanged automatically. Whenever you send a message, it is encrypted using
+            your partner's public key. This means it can only be decrypted using the corresponding private key. When
+            your partner sends a message, it is encrypted using your public key. When you recieve it, the message is
+            decrypted with your private key. This ensures no third-parties have access to the messages sent. All anyone
+            (besides whoever has the private key) can see is a scrambled and undecipherable mess. We can't even decrypt
+            your message as we don't have you or your partner's private keys!<br><a href="img/how-it-works.png">Image
+                explaination</a></p>
+    </div>
+    <div id="chat" class="hidden">
+        <div class="buttons">
+            <input type="text" id="roomCode" spellcheck="false">
+            <button id="copyRoomCode" class="button">Copy room code</button>
+            <button id="clearMessages" class="button">Clear messages</button>
+        </div>
+        <div id="chatBox"></div>
+        <div id="input"><textarea id="chatInput" placeholder="Type here..." spellcheck="false"></textarea></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="js/cryptico.min.js"></script>
+    <script src="js/remarkable.min.js"></script>
+    <script src="js/emoji.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
