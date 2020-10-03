@@ -8,7 +8,7 @@
   let otherPublicKey = ''
   let hasJoined = false
   let typing = false
-  let typingTimeout = undefined
+  let typingTimeout
   var pingSwitch = document.getElementById('pingSwitch')
   var notifySetting = localStorage.getItem('ping')
 
@@ -137,6 +137,11 @@
     msg.innerHTML = emoji.replace_colons(md.render(message.replace(/(http|https)(:\/\/)i\.imgur\.com\/([^\s]+)\.(?:jpg|gif|png)\b/ig, '![]($&)')))
     const messages = document.getElementsByClassName('message')
     messages[messages.length - 1].scrollIntoView()
+  }
+
+  const typingFunction = () => {
+    typing = false
+    socket.emit('stoppedTyping', roomCode)
   }
 
   // Generate userID and RSA keypair
@@ -279,6 +284,8 @@
         const encrypted = cryptico.encrypt(chatInput.value, otherPublicKey).cipher
         socket.emit('chatMessage', roomCode, id, encrypted)
         socket.emit('stoppedTyping', roomCode)
+        typing = false
+        clearTimeout(typingTimeout)
         addMessageHTML(id, msgID(), chatInput.value, false)
         chatInput.value = ''
       }
@@ -287,16 +294,11 @@
       if (typing === false) {
         typing = true
         socket.emit('typing', roomCode, id)
-        typingTimeout = setTimeout(() => {
-          typing = false
-          socket.emit('stoppedTyping', roomCode)
-        }, 5000)
+        typingTimeout = setTimeout(typingFunction, 5000)
       } else {
+        socket.emit('typing', roomCode, id)
         clearTimeout(typingTimeout)
-        typingTimeout = setTimeout(() => {
-          typing = false
-          socket.emit('stoppedTyping', roomCode)
-        }, 5000)
+        typingTimeout = setTimeout(typingFunction, 5000)
       }
     }
   })
