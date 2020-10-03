@@ -199,7 +199,6 @@
 
   // Decrypt message and display it
   socket.on('chatMessage', (id, message) => {
-    // document.getElementById('typingIndicator').innerHTML = ''
     const decrypted = cryptico.decrypt(message, privateKey).plaintext
     addMessageHTML(id, msgID(), decrypted, false)
     notify()
