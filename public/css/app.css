@@ -19,7 +19,7 @@ a:hover {
 
 img {
   max-width: 75%;
-  max-height: 75%;
+  max-height: 25rem;
   object-fit: contain;
 }
 
