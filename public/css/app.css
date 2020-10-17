@@ -274,6 +274,10 @@ img {
     color: rgb(126, 52, 208);
   }
 
+  .id.partner {
+    color: rgb(162, 119, 210);
+  }
+
   .status {
     color: rgb(107, 107, 107);
   }

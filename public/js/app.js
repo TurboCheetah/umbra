@@ -109,8 +109,8 @@
   }
 
   // Display the message
-  const addMessageHTML = (id, messageID, message, isStatus) => {
-    document.getElementById('chatBox').innerHTML += `<div class="message${isStatus ? ' status' : ''}"><b class="id">[${id}]</b> <span id="${messageID}"></span></div>`
+  const addMessageHTML = (id, partner = false, messageID, message, isStatus) => {
+    document.getElementById('chatBox').innerHTML += `<div class="message${isStatus ? ' status' : ''}"><b class="id ${partner ? 'partner' : ''}">[${id}]</b> <span id="${messageID}"></span></div>`
     msg = document.getElementById(messageID)
     /* text = document.createTextNode(message)
         msg.appendChild(text)
@@ -200,7 +200,7 @@
   // Decrypt message and display it
   socket.on('chatMessage', (id, message) => {
     const decrypted = cryptico.decrypt(message, privateKey).plaintext
-    addMessageHTML(id, msgID(), decrypted, false)
+    addMessageHTML(id, true, msgID(), decrypted, false)
     notify()
   })
 
