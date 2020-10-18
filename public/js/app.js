@@ -109,7 +109,7 @@
   }
 
   // Display the message
-  const addMessageHTML = (id, partner = false, messageID, message, isStatus) => {
+  const addMessageHTML = (id, partner, messageID, message, isStatus) => {
     document.getElementById('chatBox').innerHTML += `<div class="message${isStatus ? ' status' : ''}"><b class="id ${partner ? 'partner' : ''}">[${id}]</b> <span id="${messageID}"></span></div>`
     msg = document.getElementById(messageID)
     /* text = document.createTextNode(message)
@@ -166,8 +166,8 @@
         socket.emit('publicKey', roomCode, id, publicKey)
         hasJoined = true
       }
-      addMessageHTML('Server', msgID(), 'Welcome to Umbra!', true)
-      addMessageHTML(id, msgID(), 'joined the room', true)
+      addMessageHTML('Server', false, msgID(), 'Welcome to Umbra!', true)
+      addMessageHTML(id, false, msgID(), 'joined the room', true)
     }, 3000)
   })
 
@@ -194,7 +194,7 @@
   socket.on('otherPublicKey', (otherID, key) => {
     otherPublicKey = key
     if (!hasJoined) socket.emit('publicKey', roomCode, id, publicKey)
-    addMessageHTML(otherID, msgID(), 'joined the room', true)
+    addMessageHTML(otherID, true, msgID(), 'joined the room', true)
   })
 
   // Decrypt message and display it
@@ -285,7 +285,7 @@
         socket.emit('stoppedTyping', roomCode)
         typing = false
         clearTimeout(typingTimeout)
-        addMessageHTML(id, msgID(), chatInput.value, false)
+        addMessageHTML(id, false, msgID(), chatInput.value, false)
         chatInput.value = ''
       }
     } else {
