@@ -270,12 +270,13 @@ img {
     margin-bottom: 15px;
   }
 
-  .id {
-    color: rgb(126, 52, 208);
+  .partner {
+    color: rgb(162, 119, 210);
   }
 
-  .id.partner {
-    color: rgb(162, 119, 210);
+
+  .id {
+    color: rgb(126, 52, 208);
   }
 
   .status {
