@@ -35,6 +35,10 @@ io.on('connection', socket => {
     socket.broadcast.to(roomCode).emit('stoppedTyping')
   })
 
+  socket.on('disconnect', (roomCode, id) => {
+    socket.broadcast.to(roomCode).emit('userDisconnect', id)
+  })
+
   socket.on('userDisconnect', (roomCode, id) => {
     socket.broadcast.to(roomCode).emit('userDisconnect', id)
   })
