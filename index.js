@@ -34,4 +34,8 @@ io.on('connection', socket => {
     // Removes typing indicator
     socket.broadcast.to(roomCode).emit('stoppedTyping')
   })
+
+  socket.on('userDisconnect', (roomCode, id) => {
+    socket.broadcast.to(roomCode).emit('userDisconnect', id)
+  })
 })
