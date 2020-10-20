@@ -286,29 +286,39 @@
 
   document.addEventListener('keydown', e => {
   // Listen for enter key to send message
-    if (e.key === 'Enter') {
-      e.preventDefault()
-      const chatInput = document.getElementById('chatInput')
-      if (chatInput.matches(':focus') && chatInput.value) {
-        const encrypted = cryptico.encrypt(chatInput.value, otherPublicKey).cipher
-        socket.emit('chatMessage', roomCode, id, encrypted)
-        socket.emit('stoppedTyping', roomCode)
-        typing = false
-        clearTimeout(typingTimeout)
-        addMessageHTML(id, false, msgID(), chatInput.value, false)
-        chatInput.value = ''
-      }
-    } else {
-    // Typing indicators
-      if (typing === false) {
-        typing = true
-        socket.emit('typing', roomCode, id)
-        typingTimeout = setTimeout(typingFunction, 5000)
-      } else {
-        socket.emit('typing', roomCode, id)
-        clearTimeout(typingTimeout)
-        typingTimeout = setTimeout(typingFunction, 5000)
-      }
+    switch (e.key) {
+      case 13:
+        const chatInput = document.getElementById('chatInput')
+        if (chatInput.matches(':focus') && chatInput.value) {
+          const encrypted = cryptico.encrypt(chatInput.value, otherPublicKey).cipher
+          socket.emit('chatMessage', roomCode, id, encrypted)
+          socket.emit('stoppedTyping', roomCode)
+          typing = false
+          clearTimeout(typingTimeout)
+          addMessageHTML(id, false, msgID(), chatInput.value, false)
+          chatInput.value = ''
+        }
+        break
+      case 81 && e.altKey:
+        document.getElementById('chatBox').innerHTML = ''
+        break
+      case 87 && e.altKey:
+        document.getElementById('roomCode').select()
+        document.execCommand('copy')
+        document.getElementById('roomCode').blur()
+        break
+      default:
+        // Typing indicators
+        if (typing === false) {
+          typing = true
+          socket.emit('typing', roomCode, id)
+          typingTimeout = setTimeout(typingFunction, 5000)
+        } else {
+          socket.emit('typing', roomCode, id)
+          clearTimeout(typingTimeout)
+          typingTimeout = setTimeout(typingFunction, 5000)
+        }
+        break
     }
   })
 })()
