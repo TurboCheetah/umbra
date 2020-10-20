@@ -286,8 +286,8 @@
 
   document.addEventListener('keydown', e => {
   // Listen for enter key to send message
-    switch (e.key) {
-      case 13:
+    switch (e) {
+      case e.key === 13:
         const chatInput = document.getElementById('chatInput')
         if (chatInput.matches(':focus') && chatInput.value) {
           const encrypted = cryptico.encrypt(chatInput.value, otherPublicKey).cipher
@@ -299,10 +299,10 @@
           chatInput.value = ''
         }
         break
-      case 81 && e.altKey:
+      case e.altKey && e.key === 81:
         document.getElementById('chatBox').innerHTML = ''
         break
-      case 87 && e.altKey:
+      case e.altKey && e.key === 87:
         document.getElementById('roomCode').select()
         document.execCommand('copy')
         document.getElementById('roomCode').blur()
