@@ -1,3 +1,9 @@
+// Webserver
+const express = require('express')
+const app = express()
+app.use(express.static('public'))
+app.listen(3557, () => console.log('Webserver started'))
+
 const io = require('socket.io')(1337)
 console.log('Umbra Server has been started!')
 io.on('connection', socket => {
