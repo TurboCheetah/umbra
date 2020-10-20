@@ -1,8 +1,6 @@
 const io = require('socket.io')(1337)
 console.log('Umbra Server has been started!')
 io.on('connection', socket => {
-  var members = {}
-
   socket.on('createRoom', () => {
     // Generate random room code and join it
     const roomCode = Array(32).fill().map(() => ((Math.random() * 16) | 0).toString(16)).join('')
@@ -14,9 +12,6 @@ io.on('connection', socket => {
     // Check if room exists and if so join it
     if (io.sockets.adapter.rooms[roomCode]) {
       if (io.sockets.adapter.rooms[roomCode].length === 1) {
-        var roomMembers = []
-        roomMembers.push(socket)
-        Object.assign(members, { roomCode: roomMembers })
         socket.join(roomCode)
         socket.emit('roomCode', roomCode, false)
       } else socket.emit('roomError', 2)
@@ -44,8 +39,11 @@ io.on('connection', socket => {
   })
 
   // Broadcast 'user disconnected' messages
-  socket.on('disconnect', (roomCode) => {
-    roomMembers.splice(roomMembers.indexOf(socket), 1)
-    socket.broadcast.to(roomCode).emit('userDisconnect')
+  socket.on('disconnect', (roomCode, id) => {
+    socket.broadcast.to(roomCode).emit('userDisconnect', id)
+  })
+
+  socket.on('userDisconnect', (roomCode, id) => {
+    socket.broadcast.to(roomCode).emit('userDisconnect', id)
   })
 })

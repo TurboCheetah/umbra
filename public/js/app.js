@@ -215,12 +215,13 @@
   })
 
   // Display disconnect message
-  socket.on('disconnect', () => {
+  socket.on('disconnect', (roomCode, id) => {
+    socket.emit('userDisconect', roomCode, id)
     addMessageHTML('Server', false, msgID(), 'You have lost connection to the server. Attempting to reconnect...', true)
   })
 
-  socket.on('userDisconnect', () => {
-    addMessageHTML('Server', false, msgID(), `Your partner disconnected or lost connection to the server.`, true)
+  socket.on('userDisconnect', (id) => {
+    addMessageHTML('Server', false, msgID(), `${id} has disconnected or lost connection to the server.`, true)
   })
 
   // Create room button
