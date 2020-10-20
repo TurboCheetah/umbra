@@ -23,7 +23,8 @@
     "webpack-cli": "^3.3.12"
   },
   "scripts": {
-    "build": "webpack"
+    "start": "node index.js",
+    "build": "node index.js"
   },
   "author": "Nel & Turbo",
   "license": "ISC"
